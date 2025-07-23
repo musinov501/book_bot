@@ -35,6 +35,7 @@ def reaction_to_novels(message: Message):
 def reaction_to_programming(message: Message):
     chat_id = message.chat.id
     books = db.get_books_by_category("Programming")
+    print(books)
 
     if not books:
         bot.send_message(chat_id, "Bu bo'limda hozircha kitob yo'q")

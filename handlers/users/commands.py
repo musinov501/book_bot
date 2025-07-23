@@ -22,7 +22,6 @@ def reaction_to_start(message: Message):
 
     if not user:
         db.insert_telegram_id(from_user_id)
-        print("USER FROM DB:", user)
         msg = bot.send_message(chat_id, text)
 
         bot.register_next_step_handler(msg, get_name)
