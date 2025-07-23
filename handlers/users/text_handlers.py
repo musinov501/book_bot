@@ -1,6 +1,6 @@
 from data.loader import bot, db
 from telebot.types import Message
-from keyboards.default import category_buttons
+from keyboards.default import category_buttons, main_menu
 
 
 
@@ -49,3 +49,20 @@ def reaction_to_programming(message: Message):
         except FileNotFoundError:
             bot.send_message(chat_id, f"❌ Fayl topilmadi: {file_path}")
 
+
+@bot.message_handler(func=lambda message: message.text == "🏠 Bosh menyu")
+def reaction_to_back(message: Message):
+    chat_id = message.chat.id
+    bot.send_message(chat_id, "Bosh menu👇👇👇", reply_markup=main_menu())
+
+
+@bot.message_handler(func=lambda message: message.text == "‼️Do'kon haqida qisqacha")
+def reaction_to_info(message: Message):
+    chat_id = message.chat.id
+    text = '''📚 Kitoblar Botiga Xush Kelibsiz!\n
+Bu bot orqali siz quyidagi imkoniyatlardan foydalanishingiz mumkin:\n
+✅ Turli janrdagi (fantastika, tarixiy, motivatsion, sarguzasht va boshqalar) kitoblarni ko‘rish\n
+✅ Kitoblar haqida qisqacha ma’lumot olish\n
+✅ PDF ko‘rinishida kitoblarni yuklab olish\n
+✅ Kitob narxlarini bilish va janr bo‘yicha saralash'''
+    bot.send_message(chat_id, text)

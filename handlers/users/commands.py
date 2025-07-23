@@ -18,10 +18,11 @@ def reaction_to_start(message: Message):
     text = f"Assalomu alaykum {full_name}!! 📚📚Online Books botiga xush kelibsiz!!!\n\n Avval ro'yxatdan o'ting:\nTo'liq ismingizni kiriting👇👇👇"
 
     user = db.get_user(from_user_id)
-    print("USER FROM DB:", user)
+
 
     if not user:
         db.insert_telegram_id(from_user_id)
+        print("USER FROM DB:", user)
         msg = bot.send_message(chat_id, text)
 
         bot.register_next_step_handler(msg, get_name)
@@ -73,6 +74,7 @@ def get_phone(message: Message):
             msg = bot.send_message(chat_id, "Pastdagi tugmani bosib, telefon raqamingizni yuboring👇👇👇",
                                    reply_markup=phone_button())
             bot.register_next_step_handler(msg, get_phone)
+
 
 
 @bot.message_handler(commands=['help'])
