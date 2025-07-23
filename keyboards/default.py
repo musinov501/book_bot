@@ -19,7 +19,7 @@ def phone_button():
 
 def category_buttons():
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add("📚 Novels", "📗 Programming")
+    markup.add("📚 Novels", "💻 Programming")
     markup.add("🏠 Bosh menyu")
     return markup
 

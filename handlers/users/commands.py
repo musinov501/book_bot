@@ -1,7 +1,12 @@
-from telebot.types import Message, ReplyKeyboardRemove
+from telebot.types import Message, ReplyKeyboardRemove, BotCommand
 from data.loader import bot, db
 from keyboards.default import main_menu, phone_button
 
+
+bot.set_my_commands([
+    BotCommand('start', 'Botni ishga tushirish'),
+    BotCommand('help', 'Yordam')
+       ])
 
 REGISTER = {}
 
@@ -70,3 +75,7 @@ def get_phone(message: Message):
             bot.register_next_step_handler(msg, get_phone)
 
 
+@bot.message_handler(commands=['help'])
+def reaction_to_help(message: Message):
+    chat_id = message.chat.id
+    bot.send_message(chat_id, f"📚Online Kitob do'koni boti - 🔍Kitobxonlarga yordam ulashish maqsadida yaratilgan -> bu yerda siz har xil categoriadagi kitoblarni yuklab olib, mutoalaa qilishingiz mumkin!!!")

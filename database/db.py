@@ -54,14 +54,15 @@ class Database:
             author TEXT,
             price REAL,
             description TEXT,
-            category TEXT
+            category TEXT,
+            file_path TEXT
             )'''
 
         self.execute(sql, commit=True)
 
-    def insert_books(self, title, author, price, description, category):
-        sql = '''INSERT INTO books(title, author, price, description, category)VALUES (?, ?, ?, ?)'''
-        self.execute(sql, title, author, price, description, category, commit=True)
+    def insert_books(self, title, author, price, description, category, file_path):
+        sql = '''INSERT INTO books(title, author, price, description, category, file_path)VALUES (?, ?, ?, ?, ?, ?)'''
+        self.execute(sql, title, author, price, description, category,file_path, commit=True)
 
 
     def get_all_books(self):
@@ -70,7 +71,7 @@ class Database:
 
     def get_book_by_id(self, book_id):
         sql = 'SELECT * FROM books WHERE book_id = ?'
-        self.execute(sql, book_id, fetchone=True)
+        return self.execute(sql, book_id, fetchone=True)
 
     def get_books_by_category(self, category):
         sql = "SELECT * FROM books WHERE category = ?"
